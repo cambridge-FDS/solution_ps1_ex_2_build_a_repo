@@ -1,0 +1,7 @@
+name: gdp
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - seaborn
+  - polars
