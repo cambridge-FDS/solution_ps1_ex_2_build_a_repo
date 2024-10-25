@@ -1,4 +1,3 @@
-# %%
 import polars as pl
 from pathlib import Path
 from typing import List
@@ -34,7 +33,7 @@ def data_cleaner(
     df_small: pl.DataFrame
     """
 
-    df_small = df.filter(pl.col("Country Code").is_in(COUNTRY_CODES))
+    df_small = df.filter(pl.col("Country Code").is_in(countries))
     cols_to_keep = ["Country Name"] + [str(i) for i in range(start, end)]
     df_small = df_small.select(cols_to_keep)
     df_small = df_small.unpivot(
@@ -45,9 +44,3 @@ def data_cleaner(
         pl.col("GDP").cast(pl.Float64),
     )
     return df_small.sort("Country Name", "Year")
-
-
-# %%
-
-
-# %%
